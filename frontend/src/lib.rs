@@ -10,3 +10,6 @@ use todo_item::TodoItem;
 
 mod todo_list;
 use todo_list::TodoList;
+
+mod todo_footer;
+use todo_footer::TodoFooter;
