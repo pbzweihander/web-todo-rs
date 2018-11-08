@@ -46,7 +46,7 @@ impl<CTX: 'static> Component<CTX> for TodoApp {
                     .position(|ref todo| todo.id == id)
                     .unwrap();
                 let content = self.todos[i].content.clone();
-                let done = self.todos[i].done;
+                let done = !self.todos[i].done;
                 self.todos[i] = Todo { id, content, done };
             }
         }
