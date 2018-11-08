@@ -38,15 +38,7 @@ impl<CTX: 'static> Renderable<CTX, Self> for TodoFooter {
             <footer class="footer",>
                 <span class="todo-count",>
                     <strong>{ self.todo_count }</strong>
-                    {
-                        format!(" {} left",
-                            if self.todo_count == 1 {
-                                "item"
-                            } else {
-                                "items"
-                            }
-                        )
-                    }
+                    { " item(s) left" }
                 </span>
             </footer>
         )
