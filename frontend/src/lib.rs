@@ -5,14 +5,14 @@ extern crate yew;
 mod todo;
 use todo::Todo;
 
-mod todo_item;
-use todo_item::TodoItem;
+mod item;
+use item::TodoItem;
 
-mod todo_list;
-use todo_list::TodoList;
+mod list;
+use list::TodoList;
 
-mod todo_header;
-use todo_header::TodoHeader;
+mod header;
+use header::TodoHeader;
 
-mod todo_footer;
-use todo_footer::TodoFooter;
+mod footer;
+use footer::TodoFooter;
