@@ -44,6 +44,11 @@ impl<CTX: 'static> Component<CTX> for TodoHeader {
         }
         false
     }
+
+    fn change(&mut self, props: Self::Properties, _: &mut Env<CTX, Self>) -> ShouldRender {
+        self.add = props.add;
+        false
+    }
 }
 
 impl<CTX: 'static> Renderable<CTX, Self> for TodoHeader {
