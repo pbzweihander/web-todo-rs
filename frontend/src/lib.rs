@@ -11,5 +11,8 @@ use todo_item::TodoItem;
 mod todo_list;
 use todo_list::TodoList;
 
+mod todo_header;
+use todo_header::TodoHeader;
+
 mod todo_footer;
 use todo_footer::TodoFooter;
