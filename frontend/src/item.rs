@@ -65,7 +65,7 @@ impl<CTX: 'static> Renderable<CTX, Self> for TodoItem {
                     type="checkbox",
                     onclick=|_| TodoItemMessage::ToggleComplete,
                     checked={ self.todo.done },
-                >
+                />
                 <label>{ &self.todo.content }</label>
                 <button
                     class="destroy",
