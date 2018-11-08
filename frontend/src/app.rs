@@ -67,7 +67,7 @@ impl<CTX: 'static> Renderable<CTX, Self> for TodoApp {
                     remove=|id| TodoAppMessage::Remove(id),
                 />
                 <TodoFooter:
-                    todo_count=self.todos.len(),
+                    todo_count=self.todos.iter().filter(|todo| !todo.done).count(),
                 />
             </section>
         )
