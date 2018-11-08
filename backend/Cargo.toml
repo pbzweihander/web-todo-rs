@@ -1,0 +1,7 @@
+[package]
+name = "web-todo-backend"
+version = "0.1.0"
+authors = ["pbzweihander <sd852456@naver.com>"]
+
+[dependencies]
+rocket = "0.3.17"
