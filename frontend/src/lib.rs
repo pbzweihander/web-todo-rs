@@ -18,4 +18,4 @@ mod footer;
 use footer::TodoFooter;
 
 pub mod app;
-pub use app::App;
+pub use app::TodoApp;

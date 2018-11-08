@@ -4,23 +4,23 @@ extern crate yew;
 use yew::prelude::*;
 use {Todo, TodoFooter, TodoHeader, TodoList};
 
-pub struct App {
+pub struct TodoApp {
     todos: Vec<Todo>,
     i: usize,
 }
 
-pub enum AppMessage {
+pub enum TodoAppMessage {
     Add(String),
     ToggleComplete(usize),
     Remove(usize),
 }
 
-impl<CTX: 'static> Component<CTX> for App {
-    type Message = AppMessage;
+impl<CTX: 'static> Component<CTX> for TodoApp {
+    type Message = TodoAppMessage;
     type Properties = ();
 
     fn create(_: Self::Properties, _: &mut Env<CTX, Self>) -> Self {
-        App {
+        TodoApp {
             todos: vec![],
             i: 0,
         }
@@ -28,7 +28,7 @@ impl<CTX: 'static> Component<CTX> for App {
 
     fn update(&mut self, msg: Self::Message, _: &mut Env<CTX, Self>) -> ShouldRender {
         match msg {
-            AppMessage::Add(new_content) => {
+            TodoAppMessage::Add(new_content) => {
                 self.todos.push(Todo {
                     id: self.i,
                     content: new_content,
@@ -36,10 +36,10 @@ impl<CTX: 'static> Component<CTX> for App {
                 });
                 self.i += 1;
             }
-            AppMessage::Remove(id) => {
+            TodoAppMessage::Remove(id) => {
                 self.todos.retain(|todo| todo.id != id);
             }
-            AppMessage::ToggleComplete(id) => {
+            TodoAppMessage::ToggleComplete(id) => {
                 let i = self
                     .todos
                     .iter()
@@ -54,17 +54,17 @@ impl<CTX: 'static> Component<CTX> for App {
     }
 }
 
-impl<CTX: 'static> Renderable<CTX, Self> for App {
+impl<CTX: 'static> Renderable<CTX, Self> for TodoApp {
     fn view(&self) -> Html<CTX, Self> {
         html!(
             <section class="todoapp",>
                 <TodoHeader:
-                    add=|new_content| AppMessage::Add(new_content),
+                    add=|new_content| TodoAppMessage::Add(new_content),
                 />
                 <TodoList:
                     todos=self.todos.clone(),
-                    toggle_complete=|id| AppMessage::ToggleComplete(id),
-                    remove=|id| AppMessage::Remove(id),
+                    toggle_complete=|id| TodoAppMessage::ToggleComplete(id),
+                    remove=|id| TodoAppMessage::Remove(id),
                 />
                 <TodoFooter:
                     todo_count=self.todos.len(),
