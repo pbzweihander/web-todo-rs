@@ -16,3 +16,6 @@ use header::TodoHeader;
 
 mod footer;
 use footer::TodoFooter;
+
+pub mod app;
+pub use app::App;
