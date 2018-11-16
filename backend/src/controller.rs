@@ -23,3 +23,11 @@ pub fn complete_todo(conn: &Conn, tid: i32) -> Result<usize, Error> {
         .execute(conn)
         .map_err(Into::into)
 }
+
+pub fn delete_todo(conn: &Conn, tid: i32) -> Result<usize, Error> {
+    use schema::todos::dsl::*;
+
+    diesel::delete(todos.find(tid))
+        .execute(conn)
+        .map_err(Into::into)
+}
