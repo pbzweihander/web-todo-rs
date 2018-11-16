@@ -8,9 +8,9 @@ use Pool;
 #[fail(display = "method {} not allowed on {}", _0, _1)]
 struct MethodNotAllowedError(Method, String);
 
-pub fn route(req: &Request<Body>, pool: &Pool) -> Response<Body> {
+pub fn route(req: Request<Body>, pool: Pool) -> Response<Body> {
     match (req.method(), req.uri().path()) {
-        (&Method::GET, "/todo") => get_todos(req, pool),
+        (&Method::GET, "/todo") => get_todos(&req, &pool),
         (m, u) => Err(MethodNotAllowedError(m.clone(), u.to_string()).into()),
     }.unwrap_or_else(|e| {
         eprintln!("{}", e);
