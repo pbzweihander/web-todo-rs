@@ -11,5 +11,4 @@ pub struct Todo {
 #[table_name = "todos"]
 pub struct NewTodo<'a> {
     pub content: &'a str,
-    pub done: bool,
 }

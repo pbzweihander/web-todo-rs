@@ -1,9 +1,9 @@
 extern crate diesel;
 extern crate web_todo_backend;
 
-use self::diesel::prelude::*;
-use self::web_todo_backend::db::establish_connection;
-use self::web_todo_backend::model::Todo;
+use diesel::prelude::*;
+use web_todo_backend::db::establish_connection;
+use web_todo_backend::model::Todo;
 
 fn main() {
     use web_todo_backend::schema::todos::dsl::*;

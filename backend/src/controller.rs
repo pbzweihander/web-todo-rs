@@ -1,16 +1,25 @@
 extern crate diesel;
 
 use diesel::prelude::*;
-use model::{NewTodo, Todo};
+use model::NewTodo;
 use {Conn, Error};
 
-pub fn create_todo<'a>(conn: &Conn, content: &'a str, done: bool) -> Result<usize, Error> {
+pub fn create_todo<'a>(conn: &Conn, content: &'a str) -> Result<usize, Error> {
     use schema::todos;
 
-    let new_todo = NewTodo { content, done };
+    let new_todo = NewTodo { content };
 
     diesel::insert_into(todos::table)
         .values(&new_todo)
+        .execute(conn)
+        .map_err(Into::into)
+}
+
+pub fn complete_todo(conn: &Conn, tid: i32) -> Result<usize, Error> {
+    use schema::todos::dsl::*;
+
+    diesel::update(todos.find(tid))
+        .set(done.eq(true))
         .execute(conn)
         .map_err(Into::into)
 }

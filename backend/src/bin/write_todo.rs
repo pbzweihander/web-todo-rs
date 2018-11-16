@@ -13,6 +13,6 @@ fn main() {
     stdin().read_line(&mut content).unwrap();
     let content = content.trim();
 
-    let _ = create_todo(&connection, content.trim(), false).expect("Error saving todo");
+    let _ = create_todo(&connection, content.trim()).expect("Error saving todo");
     println!("\nSaved todo \"{}\"", content);
 }
