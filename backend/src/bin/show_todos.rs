@@ -16,6 +16,11 @@ fn main() {
 
     println!("Displaying {} todos", results.len());
     for todo in results {
-        println!("[{}] {}", if todo.done { "x" } else { " " }, todo.content);
+        println!(
+            " {:>2} [{}] {}",
+            todo.id,
+            if todo.done { "x" } else { " " },
+            todo.content
+        );
     }
 }
