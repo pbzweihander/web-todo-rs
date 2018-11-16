@@ -10,7 +10,6 @@ fn main() {
 
     let connection = establish_connection();
     let results = todos
-        .limit(5)
         .load::<Todo>(&connection)
         .expect("Error loading todos");
 
