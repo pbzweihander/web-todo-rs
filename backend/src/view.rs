@@ -5,7 +5,7 @@ use self::hyper::{Body, Request, Response, StatusCode};
 use controller::*;
 use {Error, Pool};
 
-pub fn get_todos(_: Request<Body>, pool: &Pool) -> Result<Response<Body>, Error> {
+pub fn get_todos(_: &Request<Body>, pool: &Pool) -> Result<Response<Body>, Error> {
     let conn = pool.get()?;
     let todos = list_todos(&conn)?;
 
