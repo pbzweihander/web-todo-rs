@@ -12,8 +12,9 @@ fn main() {
         .expect(&format!("Usage: {} {{id}}", program))
         .parse::<i32>()
         .expect("Invalid ID");
-    let connection = establish_connection();
+    let pool = establish_connection();
 
+    let connection = pool.get().unwrap();
     let _ = delete_todo(&connection, tid).expect(&format!("Unable to find todo {}", tid));
     println!("Todo {} deleted!", tid);
 }

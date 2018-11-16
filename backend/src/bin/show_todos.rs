@@ -8,7 +8,9 @@ use web_todo_backend::model::Todo;
 fn main() {
     use web_todo_backend::schema::todos::dsl::*;
 
-    let connection = establish_connection();
+    let pool = establish_connection();
+
+    let connection = pool.get().unwrap();
     let results = todos
         .load::<Todo>(&connection)
         .expect("Error loading todos");

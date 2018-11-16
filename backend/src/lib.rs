@@ -1,3 +1,5 @@
+#![allow(proc_macro_derive_resolution_fallback)]
+
 #[macro_use]
 extern crate serde_derive;
 #[macro_use]
@@ -5,6 +7,8 @@ extern crate diesel;
 extern crate failure;
 
 pub type Conn = diesel::sqlite::SqliteConnection;
+pub type ConnMan = diesel::r2d2::ConnectionManager<Conn>;
+pub type Pool = diesel::r2d2::Pool<ConnMan>;
 pub type Error = failure::Error;
 
 pub mod controller;
