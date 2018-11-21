@@ -10,23 +10,23 @@ pub fn list_todos(conn: &Conn) -> Result<Vec<Todo>, Error> {
     todos.load::<Todo>(conn).map_err(Into::into)
 }
 
-pub fn create_todo<'a>(conn: &Conn, content: &'a str) -> Result<usize, Error> {
+pub fn create_todo<'a>(conn: &Conn, content: &'a str) -> Result<Todo, Error> {
     use schema::todos;
 
     let new_todo = NewTodo { content };
 
     diesel::insert_into(todos::table)
         .values(&new_todo)
-        .execute(conn)
+        .get_result(conn)
         .map_err(Into::into)
 }
 
-pub fn complete_todo(conn: &Conn, tid: i32) -> Result<usize, Error> {
+pub fn complete_todo(conn: &Conn, tid: i32) -> Result<Todo, Error> {
     use schema::todos::dsl::*;
 
     diesel::update(todos.find(tid))
         .set(done.eq(true))
-        .execute(conn)
+        .get_result(conn)
         .map_err(Into::into)
 }
 

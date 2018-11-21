@@ -1,6 +1,6 @@
 table! {
     todos (id) {
-        id -> Integer,
+        id -> Int4,
         content -> Text,
         done -> Bool,
     }

@@ -7,7 +7,7 @@ extern crate diesel;
 #[macro_use]
 extern crate failure;
 
-pub type Conn = diesel::sqlite::SqliteConnection;
+pub type Conn = diesel::pg::PgConnection;
 pub type ConnMan = diesel::r2d2::ConnectionManager<Conn>;
 pub type Pool = diesel::r2d2::Pool<ConnMan>;
 pub type Error = failure::Error;
